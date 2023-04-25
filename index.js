@@ -79,6 +79,7 @@ app.post('/api/persons', (req, res) => {
   } else if (!uniqueName) {
     return res.status(400).json({error: 'person already exists'})
   } else {
+    persons = persons.concat(person)
     res.json(person)
   }
 })
