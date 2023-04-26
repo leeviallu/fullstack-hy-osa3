@@ -5,8 +5,6 @@ const morgan = require('morgan')
 const cors = require('cors')
 const Person = require('./models/person');
 
-let persons = []
-
 morgan.token('body', req => {
   return JSON.stringify(req.body)
 })
@@ -16,8 +14,7 @@ const unknownEndpoint = (req, res) => {
 }
 
 const errorHandler = (error, req, res, next) => {
-  console.error('msg',error.message)
-  console.error('name',error.name)
+  console.error(error.message)
 
   if (error.name == 'CastError') {
     res.status(400).send({ error: 'malformatted id' })
